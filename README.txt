@@ -1,67 +1,65 @@
 # 📊 Análise Interativa de Vendas
 
-**Análise Interativa de Vendas** é um painel web desenvolvido com **Python**, **Pandas** e **Streamlit**, que permite a análise dinâmica de dados de vendas através de uma interface intuitiva. O sistema utiliza dados simulados para representar cenários reais, oferecendo flexibilidade para exploração e geração de insights.
+**Análise Interativa de Vendas** é um painel web desenvolvido com **Python**, **Pandas** e **Streamlit**, que permite a análise dinâmica de dados de vendas por meio de uma interface simples e intuitiva.  
+A aplicação simula um cenário de varejo com dados realistas e permite ao usuário cruzar informações em tempo real para obter insights detalhados.
 
 ---
 
 ## 🧠 Funcionalidades
 
-- Visualização interativa de vendas por loja, vendedor, produto, cliente e forma de pagamento.
+- Visualização interativa por loja, vendedor, produto, cliente e forma de pagamento.
 - Cálculo automático de comissão sobre as vendas (5%).
-- Geração de dados fictícios com clientes, datas, produtos e formas de pagamento aleatórias.
+- Geração de dados fictícios e realistas de forma automatizada.
+- Consolidação de dados a partir de **três planilhas diferentes**.
 - Exportação dos dados simulados em formatos `.csv` e `.xlsx`.
-- Tabela dinâmica com totalizadores por linha e por coluna.
+- Tabela dinâmica (pivot table) com totalizadores por linha e coluna.
 
 ---
 
 ## 🗃️ Sobre os dados fictícios
 
-Este projeto utiliza **dados simulados** gerados automaticamente por um script em Python, com o objetivo de representar um cenário de vendas no varejo de forma realista.
+Este projeto utiliza dados **totalmente simulados**, criados por um script Python para representar um ambiente de vendas realista, com 2.000 registros aleatórios.
 
 ### 📌 O que os dados representam?
 
-- **Compras:** Registros de vendas com data, loja, vendedor, produto, forma de pagamento, nome e gênero do cliente.
-- **Produtos:** Lista de 5 produtos eletrônicos com identificadores únicos e preços definidos.
-- **Lojas:** Conjunto de 5 lojas distribuídas por diferentes estados brasileiros, cada uma com seus respectivos vendedores.
+- **Compras:** Data da venda, loja, vendedor, produto vendido, cliente (nome e gênero) e forma de pagamento.
+- **Produtos:** Catálogo com 5 produtos eletrônicos, cada um com um preço.
+- **Lojas:** 5 lojas localizadas em estados diferentes, cada uma com uma equipe de vendedores.
 
-As datas das compras são distribuídas aleatoriamente ao longo dos últimos 365 dias. Os nomes dos clientes são gerados de forma realista com base no gênero.
-
-### 💡 Por que usar dados fictícios?
-
-- Evita exposição de dados sensíveis ou reais.
-- Facilita o teste de funcionalidades e visualizações.
-- Permite maior liberdade de manipulação dos dados.
+Os nomes dos clientes são gerados com base no gênero, as datas variam aleatoriamente ao longo de um ano, e os pagamentos são distribuídos entre cartão, boleto, pix e dinheiro.
 
 ---
 
-## 📁 Arquivos gerados
+### 🔗 Consolidação de dados
 
-- `compras.csv` / `compras.xlsx`  
-  Contém:
-  - `data`: data e hora da compra  
-  - `loja`: cidade onde a compra foi realizada  
-  - `vendedor`: quem realizou a venda  
-  - `produto`: item vendido  
-  - `cliente_nome` e `cliente_genero`: dados simulados do cliente  
-  - `forma_pagamento`: método de pagamento utilizado  
+Durante a execução da aplicação, os dados são **lidos de três planilhas separadas**:
 
-- `produtos.csv` / `produtos.xlsx`  
-  - `id`: identificador do produto  
-  - `nome`: nome do produto  
-  - `preco`: valor do item  
+- `compras.csv` / `compras.xlsx`
+- `produtos.csv` / `produtos.xlsx`
+- `lojas.csv` / `lojas.xlsx`
 
-- `lojas.csv` / `lojas.xlsx`  
-  - `estado`, `cidade`: localização da loja  
-  - `vendedores`: nomes dos vendedores da loja  
+Esses dados são **unificados em um único DataFrame**, onde:
+
+- As compras são integradas aos produtos (para adicionar o preço).
+- Uma coluna de **comissão (5%)** é criada automaticamente.
+- As informações de loja, vendedor e forma de pagamento são mantidas para permitir cruzamentos.
+
+Essa união permite gerar análises detalhadas por qualquer dimensão escolhida pelo usuário.
 
 ---
 
-## 🧰 Tecnologias utilizadas
+## 📁 Estrutura do projeto
 
-- **Python 3**
-- **Pandas**
-- **Streamlit**
-- **names** (gerador de nomes aleatórios realistas)
-- **datetime**, **random**, **pathlib**
-
----
+analise-interativa-vendas/
+│
+├── datasets/
+│ ├── compras.csv
+│ ├── compras.xlsx
+│ ├── lojas.csv
+│ ├── lojas.xlsx
+│ ├── produtos.csv
+│ ├── produtos.xlsx
+│
+├── AIV.py # Aplicação principal (Análise Interativa de Vendas)
+├── gera_dataset.py # Script que gera os dados fictícios
+└── README.md # Este arquivo
