@@ -65,10 +65,3 @@ As datas das compras são distribuídas aleatoriamente ao longo dos últimos 365
 - **datetime**, **random**, **pathlib**
 
 ---
-
-## ⚙️ Como executar o projeto
-
-### 1. Clone o repositório
-```bash
-git clone https://github.com/seu-usuario/analise-interativa-vendas.git
-cd analise-interativa-vendas
